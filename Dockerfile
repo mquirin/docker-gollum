@@ -11,7 +11,6 @@ RUN apt install -y -q build-essential ruby-full wget pkg-config libssl-dev zlib1
 
 # Install cmake in the most hacky way imaginable
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.1/cmake-3.17.1-Linux-x86_64.sh -P /tmp
-RUN chmod +x /tmp/cmake-*-Linux-x86_64.sh
 RUN mkdir /opt/cmake
 RUN sh /tmp/cmake-*-Linux-x86_64.sh --skip-license --prefix=/opt/cmake
 RUN ln -s /opt/cmake/bin/cmake /usr/bin/cmake
@@ -28,6 +27,7 @@ RUN gem install -N gollum
 # cleanup
 RUN apt-get clean
 RUN rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+RUN rm /tmp/cmake-*-Linux-x86_64.sh
 
 # Initialize wiki data
 RUN mkdir /root/wikidata
