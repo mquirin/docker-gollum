@@ -5,14 +5,26 @@ MAINTAINER Takahiro Suzuki <suttang@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install dependencies
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y -q build-essential ruby-full python python-docutils ruby-bundler libicu-dev libreadline-dev libssl-dev zlib1g-dev git-core
+RUN apt update
+RUN apt upgrade -y
+RUN apt install -y -q build-essential ruby-full wget pkg-config
+
+# Install cmake in the most hacky way imaginable
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.1/cmake-3.17.1-Linux-x86_64.sh -P /tmp
+RUN chmod +x /tmp/cmake-*-Linux-x86_64.sh
+RUN mkdir /opt/cmake
+RUN sh /tmp/cmake-*-Linux-x86_64.sh --skip-license --prefix=/opt/cmake
+
+# do we need all this? 
+# RUN apt install -y -q python python-docutils ruby-bundler libicu-dev libreadline-dev libssl-dev zlib1g-dev git-core
+
+# Install gollum
+RUN gem install -N gollum redcarpet github-markdown
+
+# cleanup
 RUN apt-get clean
 RUN rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
-# Install gollum
-RUN gem install gollum redcarpet github-markdown
 
 # Initialize wiki data
 RUN mkdir /root/wikidata
