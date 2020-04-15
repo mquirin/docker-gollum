@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install dependencies
 RUN apt update
 RUN apt upgrade -y
-RUN apt install -y -q build-essential ruby-full wget pkg-config libssl-dev
+RUN apt install -y -q build-essential ruby-full wget pkg-config libssl-dev zlib1g-dev
 
 # Install cmake in the most hacky way imaginable
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.1/cmake-3.17.1-Linux-x86_64.sh -P /tmp
