@@ -14,6 +14,7 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.1/cmake-3.17.1
 RUN chmod +x /tmp/cmake-*-Linux-x86_64.sh
 RUN mkdir /opt/cmake
 RUN sh /tmp/cmake-*-Linux-x86_64.sh --skip-license --prefix=/opt/cmake
+RUN ln -s /opt/cmake/bin/cmake /usr/bin/cmake
 
 # do we need all this? 
 # RUN apt install -y -q python python-docutils ruby-bundler libicu-dev libreadline-dev libssl-dev zlib1g-dev git-core
