@@ -23,12 +23,11 @@ RUN ln -s /opt/cmake/bin/cmake /usr/bin/cmake
 RUN gem install -N gollum 
 
 # what about those?
-RUN gem install -N redcarpet github-markdown
+# RUN gem install -N redcarpet github-markdown
 
 # cleanup
 RUN apt-get clean
 RUN rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-
 
 # Initialize wiki data
 RUN mkdir /root/wikidata
