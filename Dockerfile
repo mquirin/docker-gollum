@@ -19,5 +19,5 @@ RUN mkdir /opt/gollum-src \
 # Expose default gollum port 4567
 EXPOSE 4567
 RUN mkdir /root/wikidata
-ENTRYPOINT ["bundle", "exec", "bin/gollum", "/root/wikidata", "--allow-uploads", "page", "--mathjax", "--critic-markup", "--emoji" ]
+ENTRYPOINT ["/opt/gollum-src/bin/gollum", "/root/wikidata", "--allow-uploads", "page", "--mathjax", "--critic-markup", "--emoji" ]
 
